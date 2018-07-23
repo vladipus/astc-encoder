@@ -1,6 +1,10 @@
 # About
 
-This is the official repository of the evaluation codec for the Adaptive Scalable Texture Compression (ASTC) standard.
+This is a fork of the evaluation codec for the Adaptive Scalable Texture Compression (ASTC) standard, which adds an api so the code can be used as a library. astc_lib.h contains the api, see the bottom of astc_lib.cpp for the list of files to include.
+
+The original source can be found here: https://github.com/ARM-software/astc-encoder.
+
+--------------------------------------------------------------------------------
 
 ASTC technology developed by ARM® and AMD has been adopted as an official extension to both the Open GL® and OpenGL ES graphics APIs. ASTC is a major step forward in terms of image quality, reducing memory bandwidth and thus energy use.
 
@@ -48,61 +52,61 @@ ASTC specification includes two profiles: LDR and Full. The smaller LDR Profile 
 * Binaries for Windows, Mac OS X and Linux
 
 # Getting Started
- 
+
 First, accept the [license](license.txt) and download the source code. The `Binary` subdirectory contains executable binaries for Windows, Mac OS X, and Linux. If you are running on another system, you might like to try compiling from source.
- 
+
 Open a terminal, change to the appropriate directory for your system, and run the astcenc encoder program, like this on Linux or Mac OS:
- 
+
     ./astcenc
- 
+
 Or like this on Windows:
- 
+
     astcenc
- 
+
 Invoking the tool with no arguments gives a very extensive help message, including usage instructions, and details of all the possible options.
- 
+
 ## How do I run the tool?
- 
+
 First, find a 24-bit .png or .tga file you wish to use, say `/images/example.png` (or on Windows `C:\images\example.png`).
- 
+
 You can compress it using the `-c` option, like this (on Linux or Mac OS X):
- 
+
     ./astcenc -c /images/example.png /images/example-compressed.astc 6x6 -medium
 
 and on Windows:
 
     astcenc -c C:\images\example.png C:\images\example-compressed.astc 6x6 -medium
- 
+
 The `-c` indicates a compression operation, followed by the input and output filenames. The block footprint size follows, in this case 6x6 pixels, then the requested compression speed, medium.
- 
+
 To decompress the file again, you should use:
- 
+
     ./astcenc -d /images/example-compressed.astc /images/example-decompressed.tga
-    
+
 and on Windows:
 
     astcenc -d C:\images\example-compressed.astc C:\images\example-decompressed.tga
- 
+
 The `-d` indicates decompression, followed by the input and output filenames. The output file will be an uncompressed TGA image.
- 
+
 If you just want to test what compression and decompression are like, use the test mode:
- 
+
     ./astcenc -t /images/example.png /images/example-decompressed.tga 6x6 -medium
 
 and on Windows:
 
     astcenc -t C:\images\example.png C:\images\example-compressed.tga 6x6 -medium
- 
+
 This is equivalent to compressing and then immediately decompressing again, and it also prints out statistics about the fidelity of the resulting image, using the peak signal-to-noise ratio.
- 
+
 ## Experimenting
- 
+
 The block footprints go from 4x4 (8 bits per pixel) all the way up to 12x12 (0.89 bits/pixel). Like any lossy codec, such as JPEG there will come a point where selecting too aggressive a compression results in inacceptable quality loss, and ASTC is no exception. Finding this optimum balance between size and quality is one place where ASTC excels since its compression ratio is adjustable in much finer steps than other texture codecs.
- 
+
 The compression speed runs from `-veryfast`, through `-fast`, `-medium` and `-thorough`, up to `-exhaustive`. In general, the more time the encoder has to spend looking for good encodings, the better the results.
 
 # Support
 Please submit your questions and issues to the [ARM Mali Graphics forums](http://community.arm.com/groups/arm-mali-graphics).
 
-- - - 
+- - -
 _Copyright (c) 2013-2017, ARM Limited and Contributors. All rights reserved._

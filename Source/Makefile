@@ -50,20 +50,21 @@ HEADERS = \
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
+CPP = g++
 
 CPPFLAGS = -O3 -Wall -W -Wextra -msse2 -mfpmath=sse
 
 
 astcenc: $(OBJECTS) stb_image.o
-	g++ -o $@ $^ $(CPPFLAGS) -lpthread
+	$(CPP) -o $@ $^ $(CPPFLAGS) -lpthread
 
 
 $(OBJECTS): %.o: %.cpp $(HEADERS)
-	g++ -c -o $@ $< $(CPPFLAGS)
+	$(CPP) -c -o $@ $< $(CPPFLAGS)
 
 
 stb_image.o: stb_image.c
-	g++ -c -o $@ $< $(CPPFLAGS)
+	$(CPP) -c -o $@ $< $(CPPFLAGS)
 
 
 clean:
