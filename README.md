@@ -1,6 +1,8 @@
 # About
 
-This is a fork of the evaluation codec for the Adaptive Scalable Texture Compression (ASTC) standard, which adds an api so the code can be used as a library. astc_lib.h contains the api, see the bottom of astc_lib.cpp for the list of files to include.
+This is a fork of the evaluation codec for the Adaptive Scalable Texture Compression (ASTC) standard, which adds an api so the code can be used as a library, rather than as a command-line tool. astc_lib.h contains the api, see the bottom of astc_lib.cpp for the list of files to include.
+
+It also contains fixes to compile under clang, and VS15/17 on Windows.
 
 The original source can be found here: https://github.com/ARM-software/astc-encoder.
 
