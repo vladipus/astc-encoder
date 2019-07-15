@@ -19,8 +19,6 @@ enum ASTC_COMPRESS_MODE     // Trade-off compression quality for speed
 	ASTC_COMPRESS_MEDIUM,
 	ASTC_COMPRESS_THOROUGH,
 	ASTC_COMPRESS_EXHAUSTIVE,
-	ASTC_COMPRESS_NORMAL_PSNR,
-	ASTC_COMPRESS_NORMAL_PERCEP,
 };
 
 enum ASTC_DECODE_MODE
@@ -32,9 +30,11 @@ enum ASTC_DECODE_MODE
 
 enum ASTC_CHANNELS
 {
-    ASTC_RGBA,
-    ASTC_BGRA,
-    ASTC_RA,
+    ASTC_RGBA,               // Encode/decode into RGBA
+    ASTC_BGRA,               // Encode/decode into BGRA
+    ASTC_ENC_NORMAL_RA,      // Encode normal XYZ as XY in RA with reconstructed Z
+    ASTC_ENC_NORMAL_RA_PCPT, // As ASTC_RA_NORMAL_PCPT, but use perceptual metrics when encoding
+    ASTC_DEC_RA_NORMAL,      // Decode RA into XY and reconstructed Z
 };
 
 
