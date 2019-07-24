@@ -331,9 +331,7 @@ namespace
             maxiters = 4;
         }
 
-        int maxiters = maxiters;
         ewp.max_refinement_iters = maxiters;
-
         ewp.block_mode_cutoff = bmc / 100.0f;
 
         float texel_avg_error_limit_2d;
@@ -363,30 +361,13 @@ namespace
 
     void setup_ewp(ASTC_CHANNELS channels, error_weighting_params& ewp)
     {
-        if (channels == ASTC_ENC_NORMAL_RA || channels == ASTC_ENC_NORMAL_RA_PCPT)
+        if (channels == ASTC_ENC_NORMAL_RA)
         {
             ewp.rgba_weights[0] = 1.0f;
-            ewp.rgba_weights[1] = 0.0f;
-            ewp.rgba_weights[2] = 0.0f;
+            ewp.rgba_weights[1] = 0.01f;
+            ewp.rgba_weights[2] = 0.01f;
             ewp.rgba_weights[3] = 1.0f;
             ewp.ra_normal_angular_scale = 1;
-
-            ewp.partition_1_to_2_limit = 1000.0f;
-            ewp.lowest_correlation_cutoff = 0.99f;
-        }
-
-        if (channels == ASTC_ENC_NORMAL_RA_PCPT)
-        {
-            float dblimit_2d = 999;
-            ewp.texel_avg_error_limit = pow(0.1f, dblimit_2d * 0.1f) * 65535.0f * 65535.0f;
-
-            ewp.block_artifact_suppression = 1.8f;
-            ewp.mean_stdev_radius = 3;
-            ewp.rgb_mean_weight = 0;
-            ewp.rgb_stdev_weight = 50;
-            ewp.rgb_mean_and_stdev_mixing = 0.0;
-            ewp.alpha_mean_weight = 0;
-            ewp.alpha_stdev_weight = 50;
         }
     }
 }

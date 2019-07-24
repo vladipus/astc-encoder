@@ -33,7 +33,6 @@ enum ASTC_CHANNELS
     ASTC_RGBA,               // Encode/decode into RGBA
     ASTC_BGRA,               // Encode/decode into BGRA
     ASTC_ENC_NORMAL_RA,      // Encode normal XYZ as XY in RA with reconstructed Z
-    ASTC_ENC_NORMAL_RA_PCPT, // As ASTC_RA_NORMAL_PCPT, but use perceptual metrics when encoding
     ASTC_DEC_RA_NORMAL,      // Decode RA into XY and reconstructed Z
 };
 
